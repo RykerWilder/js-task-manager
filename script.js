@@ -1,5 +1,4 @@
 const $one = document.querySelector.bind(document);
-const $all = document.querySelectorAll.bind(document);
 
 const searchBar = $one('#search-bar');
 const taskList = $one('#task-list');
@@ -46,6 +45,8 @@ function addTask() {
     taskList.appendChild(li);
     searchBar.value = "";
 }
+
+function removeTask() {}
 
 
 
