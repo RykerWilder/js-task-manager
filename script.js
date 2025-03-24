@@ -69,3 +69,10 @@ function loadTasks() {
         searchBar.value = "";
     });
 }
+
+function removeTask(e) {
+    if (e.target.closest('.delete-task')) {
+        e.target.closest('li').remove();
+        addLocalStorage();
+    }
+}
