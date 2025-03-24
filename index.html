@@ -15,7 +15,13 @@
     <main class="p-10">
         <div class="flex justify-center gap-4 p-8">
             <!-- SEARCHBAR -->
-            <input type="text" id="search-bar" class="border">
+            <input type="text" id="search-bar" class="border" placeholder="Insert Task">
+            <select name="" id="priority-select" class="border">
+                <option value="default">Priority</option>
+                <option value="high">HIGH</option>
+                <option value="medium">MEDIUM</option>
+                <option value="low">LOW</option>
+            </select>
         </div>
         <div id="list-container" class="p-8">
             <ul id="task-list">
