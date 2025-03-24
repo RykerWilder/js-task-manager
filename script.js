@@ -4,9 +4,15 @@ const $all = document.querySelectorAll.bind(document);
 const searchBar = $one('#search-bar');
 const taskList = $one('#task-list');
 
+document.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        addTask();
+    }
+});
+
 function addTask() {
     let task = searchBar.value.trim();
-    if (!task) return;
+    // if (!task) return;
 
     const li = document.createElement('li');
     li.className = 'text-center flex justify-between items-center p-4 border rounded-xl hover:bg-slate-200 transition-all';
@@ -24,12 +30,6 @@ function addTask() {
     taskList.appendChild(li);
     searchBar.value = "";
 }
-
-document.addEventListener('keypress', (event) => {
-    if (event.key === 'Enter') {
-        addTask();
-    }
-});
 
 
 
