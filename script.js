@@ -4,16 +4,17 @@ const $all = document.querySelectorAll.bind(document);
 const searchBar = $one('#search-bar');
 const taskList = $one('#task-list');
 
-// Carica le task salvate all'avvio
-document.addEventListener('DOMContentLoaded', loadTasks());
+// GET TASKS IN LOCAL STORAGE WHEN DOM IT WAS CREATED
+document.addEventListener('DOMContentLoaded', getTasks());
 
-// Aggiungi task con Invio
+// ADD TASK WITH ENTER
 document.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') addTask();
 });
 
-// Rimuovi task
-taskList.addEventListener('click', removeTask);
+// DELETE TASK
+taskList.addEventListener('click', deleteTask());
+
 
 function addTask() {
     const priority = $one('#priority-select').value;
@@ -33,7 +34,7 @@ function addTask() {
     `;
 
     taskList.appendChild(li);
-    addLocalStorage();
+    setTasks();
     searchBar.value = "";
 }
 
@@ -56,20 +57,20 @@ function putPriorityTag(priority) {
     return priorityTag;
 }
 
-function addLocalStorage() {
+function setTasks() {
     const tasks = [];
     $all('li').forEach(item => {
         tasks.push({
             text: item.querySelector('h3').textContent,
-            priority: item.querySelector('span').classList.contains('bg-red-600') ? 'high' :
+            priority: item.querySelector('span').classList.contains('bg-red-600') ? 'high' : 
                 item.querySelector('span').classList.contains('bg-orange-600') ? 'medium' :
-                    item.querySelector('span').classList.contains('bg-green-600') ? 'low' : 'default'
+                item.querySelector('span').classList.contains('bg-green-600') ? 'low' : 'default'
         });
     });
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-function loadTasks() {
+function getTasks() {
     const savedTasks = localStorage.getItem("tasks");
     if (!savedTasks) return;
 
@@ -81,9 +82,9 @@ function loadTasks() {
     });
 }
 
-function removeTask(e) {
+function deleteTask(e) {
     if (e.target.closest('.delete-task')) {
         e.target.closest('li').remove();
-        addLocalStorage();
+        setTasks();
     }
 }
