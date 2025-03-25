@@ -20,18 +20,10 @@ function addTask() {
     let task = searchBar.value.trim();
     if (!task) return;
 
-    let priorityTag;
-    switch (priority) {
-        case 'high': priorityTag = 'bg-red-600'; break;
-        case 'medium': priorityTag = 'bg-orange-600'; break;
-        case 'low': priorityTag = 'bg-green-600'; break;
-        default: priorityTag = 'bg-blue-600';
-    }
-
     const li = document.createElement('li');
     li.className = 'text-center flex justify-between items-center p-4 border rounded-xl hover:bg-slate-200 transition-all';
     li.innerHTML = `
-        <span class="rounded-full ${priorityTag} h-[25px] w-[25px]"></span>
+        <span class="rounded-full ${putPriorityTag(priority)} h-[25px] w-[25px]"></span>
         <h3>${task}</h3>
         <button class="delete-task bg-slate-400 border rounded-lg p-2 cursor-pointer hover:bg-red-600">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -43,6 +35,25 @@ function addTask() {
     taskList.appendChild(li);
     addLocalStorage();
     searchBar.value = "";
+}
+
+function putPriorityTag(priority) {
+    let priorityTag;
+    switch (priority) {
+        case 'high': 
+            priorityTag = 'bg-red-600'; 
+            break;
+        case 'medium': 
+            priorityTag = 'bg-orange-600'; 
+            break;
+        case 'low': 
+            priorityTag = 'bg-green-600'; 
+            break;
+        default: 
+            priorityTag = 'bg-blue-600';
+    }
+
+    return priorityTag;
 }
 
 function addLocalStorage() {
