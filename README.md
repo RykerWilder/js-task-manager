@@ -10,13 +10,13 @@ A prioritized task management application that saves data locally in the browser
 
 ## Main Features
 
-- 📝 Add task with text and priority level
-- 🎨 Priority display with distinctive colors:
+- Add task with text and priority level
+- Priority display with distinctive colors:
   - 🔴 High (red)
   - 🟠 Medium (orange)
   - 🟢 Low (green)
   - 🔵 Default (blue)
-- 🗑️ Delete task
-- 💾 Auto save to localStorage
-- 🔄 Recover data on page reload
-- ⌨️ Keyboard support (Enter to add)
+- Delete task
+- Auto save to localStorage
+- Recover data on page reload
+- Keyboard support (Enter to add)
